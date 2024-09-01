@@ -1,48 +1,97 @@
 function calculateRent() {
+    // Evaluate the initial cost expression and update the corresponding <p> element
+    var initialCost = evaluateExpression('initialCost', 'initialCostOutput');
 
-    var initialCost = document.getElementById('initialCost').value;
-    var d1 = document.getElementById('daysRented1').value;
-    var d2 = document.getElementById('daysRented2').value;
-    var d3 = document.getElementById('daysRented3').value;
-    var d4 = document.getElementById('daysRented4').value;
-    var d5 = document.getElementById('daysRented5').value;
-    var d6 = document.getElementById('daysRented6').value;
-    var d7 = document.getElementById('daysRented7').value;
-    var d8 = document.getElementById('daysRented8').value;
+    // Calculate the number of days rented for each person and update the corresponding <p> element
+    var d1 = calculateDays('daysRented1', 'P1Days');
+    var d2 = calculateDays('daysRented2', 'P2Days');
+    var d3 = calculateDays('daysRented3', 'P3Days');
+    var d4 = calculateDays('daysRented4', 'P4Days');
+    var d5 = calculateDays('daysRented5', 'P5Days');
+    var d6 = calculateDays('daysRented6', 'P6Days');
+    var d7 = calculateDays('daysRented7', 'P7Days');
+    var d8 = calculateDays('daysRented8', 'P8Days');
 
-    d1 = Number(d1);
-    d2 = Number(d2);
-    d3 = Number(d3);
-    d4 = Number(d4);
-    d5 = Number(d5);
-    d6 = Number(d6);
-    d7 = Number(d7);
-    d8 = Number(d8);
-
+    // Calculate the total number of days rented
     var totalDays = d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8;
 
-    var p1Box = document.getElementById('P1Cost');
-    var p2Box = document.getElementById('P2Cost');
-    var p3Box = document.getElementById('P3Cost');
-    var p4Box = document.getElementById('P4Cost');
-    var p5Box = document.getElementById('P5Cost');
-    var p6Box = document.getElementById('P6Cost');
-    var p7Box = document.getElementById('P7Cost');
-    var p8Box = document.getElementById('P8Cost');
+    // Calculate and display each person's cost
+    if (totalDays > 0 && initialCost !== "Invalid input") {
+        document.getElementById('P1Cost').innerHTML = "P1 Cost: " + (initialCost * (d1 / totalDays)).toFixed(2);
+        document.getElementById('P2Cost').innerHTML = "P2 Cost: " + (initialCost * (d2 / totalDays)).toFixed(2);
+        document.getElementById('P3Cost').innerHTML = "P3 Cost: " + (initialCost * (d3 / totalDays)).toFixed(2);
+        document.getElementById('P4Cost').innerHTML = "P4 Cost: " + (initialCost * (d4 / totalDays)).toFixed(2);
+        document.getElementById('P5Cost').innerHTML = "P5 Cost: " + (initialCost * (d5 / totalDays)).toFixed(2);
+        document.getElementById('P6Cost').innerHTML = "P6 Cost: " + (initialCost * (d6 / totalDays)).toFixed(2);
+        document.getElementById('P7Cost').innerHTML = "P7 Cost: " + (initialCost * (d7 / totalDays)).toFixed(2);
+        document.getElementById('P8Cost').innerHTML = "P8 Cost: " + (initialCost * (d8 / totalDays)).toFixed(2);
+    } else {
+        document.getElementById('P1Cost').innerHTML = "P1 Cost: Invalid input";
+        document.getElementById('P2Cost').innerHTML = "P2 Cost: Invalid input";
+        document.getElementById('P3Cost').innerHTML = "P3 Cost: Invalid input";
+        document.getElementById('P4Cost').innerHTML = "P4 Cost: Invalid input";
+        document.getElementById('P5Cost').innerHTML = "P5 Cost: Invalid input";
+        document.getElementById('P6Cost').innerHTML = "P6 Cost: Invalid input";
+        document.getElementById('P7Cost').innerHTML = "P7 Cost: Invalid input";
+        document.getElementById('P8Cost').innerHTML = "P8 Cost: Invalid input";
+    }
+}
 
-    p1Box.innerHTML = "P1 Cost: " + (initialCost * (d1 / totalDays));
-    p2Box.innerHTML = "P2 Cost: " + (initialCost * (d2 / totalDays));
-    p3Box.innerHTML = "P3 Cost: " + (initialCost * (d3 / totalDays));
-    p4Box.innerHTML = "P4 Cost: " + (initialCost * (d4 / totalDays));
-    p5Box.innerHTML = "P5 Cost: " + (initialCost * (d5 / totalDays));
-    p6Box.innerHTML = "P6 Cost: " + (initialCost * (d6 / totalDays));
-    p7Box.innerHTML = "P7 Cost: " + (initialCost * (d7 / totalDays));
-    p8Box.innerHTML = "P8 Cost: " + (initialCost * (d8 / totalDays));
+// Function to evaluate the expression entered in the initialCost field and update the corresponding <p> element
+function evaluateExpression(inputId, outputId) {
+    try {
+        let expression = document.getElementById(inputId).value;
+        expression = expression.replace(/\s+/g, ''); // Remove any spaces
 
-    // if ((d1 == NaN) || (d2 == NaN)) {
-    //     resultBox.innerHTML = "Invalid Input";
-    // } else {
-    //     resultBox.innerHTML = "P1 Cost: " + (d1 + d2);
-    // }
+        if (/^[0-9+\-*/().]+$/.test(expression)) {
+            let result = eval(expression);
+            if (isNaN(result) || result === null || result === undefined) {
+                document.getElementById(outputId).innerHTML = "Initial Cost: Invalid input";
+                return "Invalid input";
+            } else {
+                document.getElementById(outputId).innerHTML = "Initial Cost: " + result.toFixed(2);
+                return result;
+            }
+        } else {
+            document.getElementById(outputId).innerHTML = "Initial Cost: Invalid input";
+            return "Invalid input";
+        }
+    } catch (e) {
+        document.getElementById(outputId).innerHTML = "Initial Cost: Invalid input";
+        return "Invalid input";
+    }
+}
 
+// Function to calculate the total number of days from ranges and update the corresponding <p> element
+function calculateDays(inputId, outputId) {
+    let input = document.getElementById(inputId).value.trim(); // Trim to remove any leading/trailing spaces
+    if (!input) {
+        document.getElementById(outputId).innerHTML = outputId.replace("Days", "") + ": 0 days";
+        return 0;
+    }
+
+    let totalDays = 0;
+    let ranges = input.split(',');
+
+    try {
+        ranges.forEach(range => {
+            let days = range.split('-').map(Number);
+            if (days.length === 1) {
+                if (isNaN(days[0])) throw new Error("Invalid input");
+                totalDays += days[0]; // Treat it as a single day or value
+            } else if (days.length === 2) {
+                if (isNaN(days[0]) || isNaN(days[1])) throw new Error("Invalid input");
+                totalDays += (days[1] - days[0] + 1);
+            } else {
+                throw new Error("Invalid input");
+            }
+        });
+
+        document.getElementById(outputId).innerHTML = outputId.replace("Days", "") + ": " + totalDays + " days";
+        return totalDays;
+
+    } catch (e) {
+        document.getElementById(outputId).innerHTML = outputId.replace("Days", "") + ": Invalid input";
+        return 0;
+    }
 }

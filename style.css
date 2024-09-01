@@ -10,9 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* Align items at the top */
     min-height: 100vh;
-    /* Minimum height to cover full screen */
 }
 
 h1 {
@@ -26,7 +24,7 @@ p {
     margin: 10px 0;
 }
 
-input[type="number"] {
+input[type="text"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -43,27 +41,13 @@ p[id^="P"] {
     margin-top: 10px;
 }
 
-p[id^="P"]:not(:last-child) {
-    margin-bottom: 10px;
-}
-
-/* Make inputs more readable */
-input[type="number"]:focus {
-    outline: none;
-    border-color: #4CAF50;
-}
-
-input[type="number"]::placeholder {
-    color: #bbb;
-}
-
 /* Centering the calculator */
 .container {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 350px;
 }
 
 /* Adjusting text sizes */
@@ -73,4 +57,17 @@ h4 {
 
 p {
     font-size: 1em;
+}
+
+/* Flexbox for input and days counter on the same line */
+.input-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.days-counter {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #555;
 }

@@ -17,27 +17,87 @@
         <h1>Rent Calculator</h1>
         <br>
 
-        <h4>Cost To Split: <input id="initialCost" onkeyup="calculateRent()" type="number" name="initialCost" step="any"
-                placeholder="Enter the first number..."></h4>
+        <!-- Instructions Section -->
+        <div class="instructions">
+            <h4>Instructions:</h4>
+            <ul>
+                <li><strong>Initial Cost:</strong> Enter a single value or a mathematical expression (e.g.,
+                    <code>100</code>, <code>50+25</code>).</li>
+                <li><strong>Days Rented:</strong> Enter a single day (e.g., <code>5</code>), a range of days (e.g.,
+                    <code>1-5</code>), or multiple ranges separated by commas (e.g., <code>1-3,5,7-9</code>).</li>
+                <li>Empty fields are treated as <code>0 days</code>.</li>
+                <li>Invalid inputs will display an "Invalid input" message.</li>
+            </ul>
+        </div>
         <br>
 
-        <p>P1 <input id="daysRented1" onkeyup="calculateRent()" type="number" name="daysRented1" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P2 <input id="daysRented2" onkeyup="calculateRent()" type="number" name="daysRented2" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P3 <input id="daysRented3" onkeyup="calculateRent()" type="number" name="daysRented3" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P4 <input id="daysRented4" onkeyup="calculateRent()" type="number" name="daysRented4" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P5 <input id="daysRented5" onkeyup="calculateRent()" type="number" name="daysRented5" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P6 <input id="daysRented6" onkeyup="calculateRent()" type="number" name="daysRented6" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P7 <input id="daysRented7" onkeyup="calculateRent()" type="number" name="daysRented7" step="any"
-                placeholder="Enter the first number..."></p>
-        <p>P8 <input id="daysRented8" onkeyup="calculateRent()" type="number" name="daysRented8" step="any"
-                placeholder="Enter the first number..."></p>
+        <h4>Cost To Split:
+            <input id="initialCost" onkeyup="calculateRent()" type="text" name="initialCost"
+                placeholder="Enter the cost...">
+        </h4>
+        <p id="initialCostOutput">Initial Cost: 0</p> <!-- Output element for initial cost -->
+        <br>
 
+        <!-- P1 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P1 <input id="daysRented1" onkeyup="calculateRent()" type="text" name="daysRented1"
+                    placeholder="Enter days..."></p>
+            <p id="P1Days" class="days-counter">P1 Days: 0</p>
+        </div>
+
+        <!-- P2 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P2 <input id="daysRented2" onkeyup="calculateRent()" type="text" name="daysRented2"
+                    placeholder="Enter days..."></p>
+            <p id="P2Days" class="days-counter">P2 Days: 0</p>
+        </div>
+
+        <!-- P3 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P3 <input id="daysRented3" onkeyup="calculateRent()" type="text" name="daysRented3"
+                    placeholder="Enter days..."></p>
+            <p id="P3Days" class="days-counter">P3 Days: 0</p>
+        </div>
+
+        <!-- P4 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P4 <input id="daysRented4" onkeyup="calculateRent()" type="text" name="daysRented4"
+                    placeholder="Enter days..."></p>
+            <p id="P4Days" class="days-counter">P4 Days: 0</p>
+        </div>
+
+        <!-- P5 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P5 <input id="daysRented5" onkeyup="calculateRent()" type="text" name="daysRented5"
+                    placeholder="Enter days..."></p>
+            <p id="P5Days" class="days-counter">P5 Days: 0</p>
+        </div>
+
+        <!-- P6 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P6 <input id="daysRented6" onkeyup="calculateRent()" type="text" name="daysRented6"
+                    placeholder="Enter days..."></p>
+            <p id="P6Days" class="days-counter">P6 Days: 0</p>
+        </div>
+
+        <!-- P7 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P7 <input id="daysRented7" onkeyup="calculateRent()" type="text" name="daysRented7"
+                    placeholder="Enter days..."></p>
+            <p id="P7Days" class="days-counter">P7 Days: 0</p>
+        </div>
+
+        <!-- P8 Input and Days (on the same line) -->
+        <div class="input-line">
+            <p>P8 <input id="daysRented8" onkeyup="calculateRent()" type="text" name="daysRented8"
+                    placeholder="Enter days..."></p>
+            <p id="P8Days" class="days-counter">P8 Days: 0</p>
+        </div>
+
+        <br><br>
+
+        <!-- Costs Display at the Bottom -->
+        <h4>Calculated Costs:</h4>
         <p id="P1Cost">P1 Cost: 0</p>
         <p id="P2Cost">P2 Cost: 0</p>
         <p id="P3Cost">P3 Cost: 0</p>
